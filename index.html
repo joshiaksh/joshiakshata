@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aksh Joshi - Data Analyst &amp; Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #4a5568;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #2d3748;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4a5568;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            color: #718096;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.2s forwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #4a5568;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.4s forwards;
+        }
+
+        .cta-button:hover {
+            background: #2d3748;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: #4a5568;
+        }
+
+        /* About Section */
+        .about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            background: #f7fafd;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            color: #4a5568;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #718096;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: #2d3748;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a5568;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .contact-link:hover {
+            background: #4a5568;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html#home" class="logo">Aksh Joshi</a>
+            <ul class="nav-links">
+                <li><a href="file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html#home">Home</a></li>
+                <li><a href="file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html#about">About</a></li>
+                <li><a href="file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html#projects">Projects</a></li>
+                <li><a href="file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Data Analyst &amp; Engineer</h1>
+            <p>Turning data into insights, building solutions that matter</p>
+            <a href="file:///Users/mgkulkar/Downloads/portfolio_website%20(1).html#projects" class="cta-button">View My Work</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>I'm Aksh Joshi, a passionate data analyst and engineer with expertise in machine learning, data engineering, and predictive analytics. I love transforming complex datasets into actionable insights and building robust data pipelines.</p>
+                    
+                    <p>My journey in data science combines technical expertise with business acumen, allowing me to deliver solutions that drive real impact. I'm constantly learning and exploring new technologies to stay at the forefront of the data revolution.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Python</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">SQL</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">AWS</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Jupyter</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Pandas</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">NumPy</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Scikit-learn</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">TensorFlow</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Apache Spark</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Docker</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Git</div>
+                    <div class="skill-item" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">Tableau</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">
+                    <h3>Stock Predictive Analysis</h3>
+                    <p>Built a comprehensive machine learning model to predict stock prices using historical data and technical indicators. Implemented various algorithms including LSTM and Random Forest for accurate forecasting.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Jupyter</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Scikit-learn</span>
+                        <span class="tech-tag">TensorFlow</span>
+                    </div>
+                    <a href="https://github.com/joshiaksh/Stock-Predictive-Analysis" class="project-link">View on GitHub →</a>
+                </div>
+
+                <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">
+                    <h3>Housing Market Analysis - AWS</h3>
+                    <p>Developed a scalable data pipeline on AWS to analyze housing market trends. Utilized cloud services for data processing, storage, and visualization to provide insights into market dynamics.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">AWS</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Jupyter</span>
+                        <span class="tech-tag">S3</span>
+                        <span class="tech-tag">EC2</span>
+                    </div>
+                    <a href="https://github.com/joshiaksh/Housing-Market-Analysis-AWS-Project" class="project-link">View on GitHub →</a>
+                </div>
+
+                <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">
+                    <h3>Taxi Service Data Engineering</h3>
+                    <p>Created an end-to-end data engineering solution for taxi service analytics. Built ETL pipelines to process large volumes of ride data and generate business intelligence reports.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Apache Spark</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Airflow</span>
+                    </div>
+                    <a href="https://github.com/joshiaksh/Taxi-Service-Data-Engineering-Project" class="project-link">View on GitHub →</a>
+                </div>
+
+                <div class="project-card" style="opacity: 0; transform: translateY(20px); transition: 0.6s;">
+                    <h3>Python Learning Journey</h3>
+                    <p>A comprehensive collection of Python tutorials, exercises, and projects documenting my learning journey. Covers data structures, algorithms, and practical applications in data science.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">Jupyter</span>
+                        <span class="tech-tag">NumPy</span>
+                        <span class="tech-tag">Pandas</span>
+                        <span class="tech-tag">Matplotlib</span>
+                    </div>
+                    <a href="https://github.com/joshiaksh/Python-Journey" class="project-link">View on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-content">
+                <p>I'm always open to discussing new opportunities, collaborating on exciting projects, or just having a conversation about data science and technology.</p>
+                <div class="contact-links">
+                    <a href="https://github.com/joshiaksh" class="contact-link">
+                        <span>📧</span> GitHub
+                    </a>
+                    <a href="mailto:aksh.joshi@example.com" class="contact-link">
+                        <span>✉️</span> Email
+                    </a>
+                    <a href="https://linkedin.com/in/akshjoshi" class="contact-link">
+                        <span>💼</span> LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Aksh Joshi. Crafted with passion for data and design.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all project cards and skill items
+        document.querySelectorAll('.project-card, .skill-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add subtle parallax effect to hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+
+</body></html>
